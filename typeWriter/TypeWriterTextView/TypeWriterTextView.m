@@ -42,7 +42,7 @@
     self.typeCharactersPerSec = 18;// type char per second
     self.typeInterval = 1 / self.typeCharactersPerSec;
     self.typeCounter = 0;
-
+    self.userInteractionEnabled = NO;
     return self;
 }
 
