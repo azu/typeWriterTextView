@@ -32,6 +32,7 @@
 		17B5CB763E8B5AD515E371BC /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		17B5CC9C16B13531913E046D /* typeWriter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = typeWriter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		17B5CE720E060E711052256F /* typeWriter-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "typeWriter-Prefix.pch"; sourceTree = "<group>"; };
+		17B5CEA711BCCEE1F3845158 /* TypeWriterTextViewProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TypeWriterTextViewProtocol.h; sourceTree = "<group>"; };
 		17B5CEF09E12D4B621333852 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		17B5CF0D8FDED31FB9256C60 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -94,6 +95,7 @@
 		17B5CB4E442B3D7D21B94DBF /* TypeWriterTextView */ = {
 			isa = PBXGroup;
 			children = (
+				17B5CEA711BCCEE1F3845158 /* TypeWriterTextViewProtocol.h */,
 				17B5C4E0E3A919B9A54B3A72 /* TypeWriterTextView.h */,
 				17B5C2A501620291E08C6708 /* TypeWriterTextView.m */,
 			);

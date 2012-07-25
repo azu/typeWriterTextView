@@ -7,10 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TypeWriterTextViewProtocol.h"
 
 @class TypeWriterTextView;
 
-@interface ViewController : UIViewController
+@interface ViewController : UIViewController <TypeWriterTextViewProtocol>
+
 @property (weak, nonatomic) IBOutlet TypeWriterTextView *typeWriterTextView;
 
 - (IBAction)stopButton:(id)sender;

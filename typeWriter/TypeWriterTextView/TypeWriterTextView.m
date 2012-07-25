@@ -4,6 +4,7 @@
 
 
 #import "TypeWriterTextView.h"
+#import "TypeWriterTextViewProtocol.h"
 
 @interface TypeWriterTextView ()
 
@@ -21,6 +22,7 @@
     NSTimer *timer_;
     NSUInteger typeCounter_;
     NSTimeInterval typeCharactersPerSec_;
+    __weak id <TypeWriterTextViewProtocol> typeWriterDelegate_;
 }
 
 @synthesize typeInterval = typeInterval_;
@@ -28,6 +30,7 @@
 @synthesize timer = timer_;
 @synthesize typeCounter = typeCounter_;
 @synthesize typeCharactersPerSec = typeCharactersPerSec_;
+@synthesize typeWriterDelegate = typeWriterDelegate_;
 
 
 - (id)initWithCoder:(NSCoder *)aDecoder {
@@ -52,8 +55,22 @@
     self.text = text;
 }
 
-- (void)appendText {
+- (void)finishTypingText {
+    [self stopTypeWriterAnimation];
+    self.typeCounter = [self.typeText length];
+    [self updateText:self.typeText];
+}
+
+- (BOOL)isFinishedTyping {
     if ([self.typeText length] <= self.typeCounter){
+        return YES;
+    }
+    return NO;
+}
+
+- (void)appendText {
+    if ([self isFinishedTyping]){
+        [self callbackDelegate];
         [self stopTypeWriterAnimation];
         return;
     }
@@ -81,4 +98,21 @@
     self.text = @"";
     self.typeCounter = 0;
 }
+
+
+- (void)callbackDelegate {
+    if ([self.typeWriterDelegate respondsToSelector:@selector(completeTypingText)]){
+        [self.typeWriterDelegate completeTypingText];
+    }
+}
+
+#pragma mark - userInteraction
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
+    if (![self isFinishedTyping]){
+        [self finishTypingText];
+    }
+    [self callbackDelegate];
+}
+
+
 @end
