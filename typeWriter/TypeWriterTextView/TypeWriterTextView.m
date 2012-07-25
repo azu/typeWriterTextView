@@ -68,7 +68,6 @@
         target:self
         selector:@selector(appendText)
         userInfo:nil repeats:YES];
-    NSLog(@"self.timer = %@", self.timer);
     [self.timer fire];
 }
 
