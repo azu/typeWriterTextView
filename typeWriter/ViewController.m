@@ -48,8 +48,8 @@
     [self.typeWriterTextView clearTypeWriter];
 }
 
-- (void)completeTypingText {
-    NSLog(@"Complete typing text");
+- (void)completeTypingText:(TypeWriterTextView *)textView {
+    NSLog(@"Complete typing text At %@" , textView);
 }
 
 @end

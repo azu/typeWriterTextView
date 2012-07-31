@@ -38,7 +38,7 @@
     if (!self){
         return nil;
     }
-    // 初期値
+    // default value
     self.typeCharactersPerSec = 18;// type char per second
     self.typeInterval = 1 / self.typeCharactersPerSec;
     self.typeCounter = 0;
@@ -46,11 +46,17 @@
     return self;
 }
 
+#pragma mark - setter overwrite
 - (void)setTypeCharactersPerSec:(NSTimeInterval)typeCharactersPerSec {
     typeCharactersPerSec_ = typeCharactersPerSec;
-    self.typeInterval = 1 / self.typeCharactersPerSec;
+    typeInterval_ = 1 / typeCharactersPerSec;
 }
 
+- (void)setTypeInterval:(NSTimeInterval)typeInterval {
+    typeInterval_ = typeInterval;
+    typeCharactersPerSec_ = 1 / typeInterval;
+}
+#pragma mark - update TextView
 - (void)updateText:(NSString *)text {
     self.text = text;
 }
@@ -59,10 +65,11 @@
     [self stopTypeWriterAnimation];
     self.typeCounter = [self.typeText length];
     [self updateText:self.typeText];
+    [self callbackDelegate];
 }
 
 - (BOOL)isFinishedTyping {
-    if ([self.typeText length] <= self.typeCounter){
+    if ([self.typeText length] == [self.text length]){
         return YES;
     }
     return NO;
@@ -99,10 +106,9 @@
     self.typeCounter = 0;
 }
 
-
 - (void)callbackDelegate {
-    if ([self.typeWriterDelegate respondsToSelector:@selector(completeTypingText)]){
-        [self.typeWriterDelegate completeTypingText];
+    if ([self.typeWriterDelegate respondsToSelector:@selector(completeTypingText:)]){
+        [self.typeWriterDelegate completeTypingText:self];
     }
 }
 
@@ -111,7 +117,6 @@
     if (![self isFinishedTyping]){
         [self finishTypingText];
     }
-    [self callbackDelegate];
 }
 
 

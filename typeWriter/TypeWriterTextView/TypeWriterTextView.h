@@ -11,6 +11,7 @@
 @interface TypeWriterTextView : UITextView {
 }
 
+
 @property(nonatomic) NSTimeInterval typeInterval;
 @property(nonatomic, copy) NSString *typeText;
 @property(nonatomic) NSTimeInterval typeCharactersPerSec;
@@ -23,6 +24,8 @@
 - (void)clearTypeWriter;
 
 - (void)finishTypingText;
+
+- (BOOL)isFinishedTyping;
 
 
 @end
